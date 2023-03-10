@@ -1,0 +1,689 @@
+backend:
+  name: git-gateway
+  branch: master
+  squash_merges: true
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "event"
+    label: "Event"
+    folder: "content/events"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{title}}/index"
+    editor:
+      preview: false
+    fields:
+      - { label: "Event Title (English)", name: "title", widget: "string" }
+      - { label: "Event Title (French)", name: "titleFr", widget: "string" }
+      - {
+          label: "Event Start Date",
+          name: "eventStartDate",
+          widget: "datetime",
+          required: true,
+        }
+      - {
+          label: "Event End Date",
+          name: "eventEndDate",
+          widget: "datetime",
+          required: true,
+        }
+      - {
+          label: "Event Category",
+          name: "eventCategory",
+          widget: "select",
+          options: ["Youth", "Indigenous", "2SLGBTQQIA"],
+          multiple: true,
+          required: true,
+        }
+      - {
+          label: "Venue Address",
+          name: "venueAddress",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Venue City",
+          name: "venueCity",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Venue Province",
+          name: "venueProvince",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Venue Postal Code",
+          name: "venuePostalCode",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Venue Phone",
+          name: "venuePhone",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Venue Website",
+          name: "venueWebsite",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Organizer Name",
+          name: "organizerName",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Organizer Phone",
+          name: "organizerPhone",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Organizer Website",
+          name: "organizerWebsite",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Organizer Email",
+          name: "organizerEmail",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Event Website Url",
+          name: "eventUrl",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Event Cost",
+          name: "eventCost",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Event Description",
+          name: "eventDescription",
+          widget: "markdown",
+          required: true,
+        }
+      - {
+          label: "Event Description Fr",
+          name: "eventDescriptionFr",
+          widget: "markdown",
+          required: true,
+        }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+  - name: "story"
+    label: "Story"
+    folder: "content/stories"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{name}}/index"
+    editor:
+      preview: false
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Slug", name: "slug", widget: "string", required: true }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Story", name: "story", widget: "markdown" }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+  - name: "question"
+    label: "Question"
+    folder: "content/questions"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{question}}/index"
+    editor:
+      preview: false
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Email", name: "email", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "string" }
+      - {
+          label: "Thumbs Up",
+          name: "like2",
+          widget: "number",
+          default: 0,
+          required: false,
+        }
+      - {
+          label: "Love",
+          name: "like1",
+          widget: "number",
+          default: 0,
+          required: false,
+        }
+      - {
+          label: "Smiley",
+          name: "like",
+          widget: "number",
+          default: 0,
+          required: false,
+        }
+      - {
+          label: "Dislike",
+          name: "dislike",
+          widget: "number",
+          default: 0,
+          required: false,
+        }
+      - {
+          label: "Hate",
+          name: "hate",
+          widget: "number",
+          default: 0,
+          required: false,
+        }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          required: false,
+        }
+  - name: "home"
+    label: "Home Page"
+    folder: "content/home"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Section1 Title", name: "section1Title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - {
+          label: "Section1 SubTitle",
+          name: "section1SubTitle",
+          widget: "string",
+        }
+      - {
+          label: "Section1 Description",
+          name: "section1Description",
+          widget: "markdown",
+        }
+      - { label: "Section2 Title", name: "section2Title", widget: "string" }
+      - {
+          label: "Section2 Description1",
+          name: "section2Desctiption1",
+          widget: "markdown",
+        }
+      - {
+          label: "Section2 Description2",
+          name: "section2Desctiption2",
+          widget: "markdown",
+        }
+      - { label: "Click here", name: "clickHere", widget: "string" }
+      - { label: "Section3", name: "section3", widget: "markdown" }
+  - name: "about"
+    label: "About Page"
+    folder: "content/about"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Section1 Text1", name: "section11", widget: "string" }
+      - { label: "Section1 Text2", name: "section12", widget: "string" }
+      - { label: "Section2 Title", name: "section2Title", widget: "string" }
+      - { label: "Section2 Data", name: "section2Data", widget: "markdown" }
+      - {
+          label: "Section2 Description",
+          name: "section2Description",
+          widget: "string",
+        }
+      - { label: "Section3 Title", name: "section3Title", widget: "string" }
+      - {
+          label: "Section3 Descriptioin",
+          name: "section3Description",
+          widget: "markdown",
+        }
+  - name: "terms"
+    label: "Terms Page"
+    folder: "content/terms"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "2S Description", name: "s2Description", widget: "markdown" }
+      - {
+          label: "2S More Description",
+          name: "s2MoreDescription",
+          widget: "string",
+        }
+      - {
+          label: "Lesbian Description",
+          name: "lesbianDescription",
+          widget: "markdown",
+        }
+      - { label: "Gay Description", name: "gayDescription", widget: "markdown" }
+      - {
+          label: "Bisexual Description",
+          name: "bisexualDescription",
+          widget: "markdown",
+        }
+      - {
+          label: "Transgender Description",
+          name: "transgenderDescription",
+          widget: "markdown",
+        }
+      - {
+          label: "Queer Description",
+          name: "queerDescription",
+          widget: "markdown",
+        }
+      - {
+          label: "More Description left part",
+          name: "moreDescription1",
+          widget: "markdown",
+        }
+      - {
+          label: "More Description right part",
+          name: "moreDescription2",
+          widget: "markdown",
+        }
+  - name: "traditional"
+    label: "Traditional Knowledge Page"
+    folder: "content/traditional"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Section1 Part1", name: "section11", widget: "markdown" }
+      - { label: "Section1 Part2", name: "section12", widget: "markdown" }
+      - { label: "Section2", name: "section2", widget: "markdown" }
+      - {
+          label: "First Nations Description",
+          name: "section31",
+          widget: "markdown",
+        }
+      - {
+          label: "First Nations Terms",
+          name: "section31Terms",
+          widget: "list",
+          fields:
+            [
+              { name: "title", label: "Title", widget: "string" },
+              { name: "description", label: "Description", widget: "string" },
+            ],
+        }
+      - { label: "Inuit Description", name: "section32", widget: "markdown" }
+      - {
+          label: "Metis Description Part 1",
+          name: "section331",
+          widget: "markdown",
+        }
+      - {
+          label: "Metis Description Part 2",
+          name: "section332",
+          widget: "markdown",
+        }
+      - { label: "Sources", name: "sources", widget: "markdown" }
+      - { label: "Sources", name: "sources1", widget: "markdown" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+  - name: "spotlights"
+    label: "Spotlights"
+    folder: "content/spotlights"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{name}}/index"
+    editor:
+      preview: false
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - {
+          label: "Description (English)",
+          name: "descriptionEn",
+          widget: "markdown",
+        }
+      - {
+          label: "Description (French)",
+          name: "descriptionFr",
+          widget: "markdown",
+        }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - {
+          label: "Links",
+          name: "links",
+          widget: "list",
+          fields:
+            [
+              { name: "title", label: "Title", widget: "string" },
+              { name: "url", label: "Url", widget: "string" },
+            ],
+        }
+      - {
+          label: "Social",
+          name: "social",
+          widget: "list",
+          fields:
+            [
+              {
+                name: "type",
+                label: "Type",
+                options: ["facebook", "linkedin", "twitter"],
+                multiple: false,
+                widget: "select",
+              },
+              { name: "url", label: "Url", widget: "string" },
+            ],
+        }
+      - { label: 'Featured Spotlight', name: "featuredSpotlight", widget: "boolean", default: true }
+
+  - name: "ask"
+    label: "Ask Page"
+    folder: "content/ask"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Section 1", name: "section1", widget: "markdown" }
+      - { label: "Section 2", name: "section2", widget: "string" }
+      - { label: "QA Title", name: "qaTitle", widget: "string" }
+      - {
+          label: "Submit Question Title",
+          name: "submitTitle",
+          widget: "markdown",
+        }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - {
+          label: "FAQ",
+          name: "faq",
+          widget: "list",
+          fields:
+            [
+              { name: "title", label: "Title", widget: "string" },
+              { name: "description", label: "Description", widget: "markdown" },
+            ],
+        }
+  - name: "pulse"
+    label: "Current Events Page"
+    folder: "content/pulse"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Section 1", name: "section1", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+  - name: "resources"
+    label: "Resources Page"
+    folder: "content/resources"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+      - {
+          label: "Resource",
+          name: "resource",
+          widget: "list",
+          fields:
+            [
+              { name: "category", label: "Category", widget: "string" },
+              {
+                name: "resources",
+                label: "Resources",
+                widget: "list",
+                fields:
+                  [
+                    { name: "title", label: "Title", widget: "string" },
+                    {
+                      name: "description",
+                      label: "Description",
+                      widget: "string",
+                    },
+                    { name: "url", label: "Url", widget: "string" },
+                    {
+                      name: "buttonText",
+                      label: "Button Text",
+                      widget: "string",
+                      required: false
+                    },
+                    {
+                      name: "isLinkExternal",
+                      label: "Open Link in new tab",
+                      widget: "boolean",
+                      default: true
+                    },
+                  ],
+              },
+            ],
+        }
+  - name: "storySubmission"
+    label: "Story Submission Page"
+    folder: "content/storySubmission"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+  - name: "stories"
+    label: "Stories Page"
+    folder: "content/storiesPage"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+  - name: "shareEvent"
+    label: "Event Share Page"
+    folder: "content/shareEventPage"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
+  - name: "spotlightPage"
+    label: "Spotlight Page"
+    folder: "content/spotlightPage"
+    create: true
+    slug: "index"
+    media_folder: ""
+    public_folder: ""
+    path: "{{language}}/index"
+    editor:
+      preview: false
+    fields:
+      - {
+          label: "Language",
+          name: "language",
+          widget: "select",
+          options: ["En", "Fr"],
+          multiple: false,
+          required: true,
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO Keyword", name: "seoKeyword", widget: "string" }
+      - { label: "SEO Description", name: "seoDescription", widget: "string" }
